@@ -41,8 +41,13 @@ export function GlassSearchBar({
         accessibilityLabel="Search"
       />
       <Ionicons name="mic-outline" size={18} color={theme.textTertiary} />
-      <Pressable onPress={onFilter} hitSlop={8} accessibilityLabel="Filters">
-        <Ionicons name="options-outline" size={18} color={theme.tint} />
+      <View style={[styles.divider, { backgroundColor: theme.border }]} />
+      <Pressable
+        onPress={onFilter}
+        hitSlop={8}
+        accessibilityLabel="Filters"
+        style={[styles.filter, { backgroundColor: theme.backgroundElement }]}>
+        <Ionicons name="options-outline" size={16} color={theme.tint} />
       </Pressable>
     </View>
   );
@@ -62,5 +67,13 @@ const styles = StyleSheet.create({
     flex: 1,
     ...Typography.body,
     paddingVertical: Spacing.two,
+  },
+  divider: { width: 1, height: 16 },
+  filter: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

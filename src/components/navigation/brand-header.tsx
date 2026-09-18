@@ -21,10 +21,10 @@ export function BrandHeader() {
         PhsarNow
       </AppText>
       <Pressable onPress={() => router.push('/settings')} style={styles.location} accessibilityLabel="Change location">
-        <Ionicons name="location" size={14} color={theme.tint} />
         <AppText variant="caption" color="tint">
           {user?.location.split(',')[0] ?? DEFAULT_LOCATION}
         </AppText>
+        <Ionicons name="chevron-down" size={12} color={theme.tint} />
       </Pressable>
       <Pressable onPress={() => router.push('/notifications')} hitSlop={8} accessibilityLabel="Notifications">
         <Ionicons name="notifications-outline" size={22} color={theme.text} />

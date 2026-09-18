@@ -24,7 +24,7 @@ export const CATEGORIES: {
   { id: 'electronics', label: 'Electronics', icon: 'phone-portrait-outline' },
   { id: 'fashion', label: 'Fashion', icon: 'shirt-outline' },
   { id: 'vehicles', label: 'Vehicles', icon: 'car-outline' },
-  { id: 'home', label: 'Home', icon: 'home-outline' },
+  { id: 'home', label: 'Home & Living', icon: 'home-outline' },
   { id: 'beauty', label: 'Beauty', icon: 'sparkles-outline' },
   { id: 'sports', label: 'Sports', icon: 'basketball-outline' },
   { id: 'books', label: 'Books', icon: 'book-outline' },

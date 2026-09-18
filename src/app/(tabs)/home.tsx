@@ -16,11 +16,7 @@ import { useFilterStore } from '@/store/filter-store';
 import { Palette, Radius, ScreenPadding, Spacing } from '@/theme';
 import type { Product } from '@/types';
 
-const DEAL_CHIPS = [
-  { id: 'all', label: 'All Deals' },
-  { id: 'electronics', label: 'Electronics' },
-  { id: 'fashion', label: 'Fashion' },
-] as const;
+import { CATEGORIES } from '@/constants/app';
 
 export default function HomeScreen() {
   const theme = useTheme();
@@ -55,14 +51,17 @@ export default function HomeScreen() {
       <View style={styles.greet}>
         <AppText variant="title3">Good {new Date().getHours() < 12 ? 'morning' : 'afternoon'}</AppText>
         <View style={styles.pills}>
-          <View style={[styles.live, { backgroundColor: '#E8F8EE' }]}>
+          <View style={[styles.live, { backgroundColor: Palette.mint }]}>
             <AppText variant="caption" style={{ color: Palette.success, fontWeight: '700' }}>
               BKK1 Active
             </AppText>
           </View>
-          <AppText variant="caption" color="tint">
-            1,420 Deals Near You
-          </AppText>
+          <View style={[styles.deals, { backgroundColor: theme.backgroundElement }]}>
+            <View style={styles.dot} />
+            <AppText variant="caption" color="secondary">
+              1,420 Deals Near You
+            </AppText>
+          </View>
         </View>
       </View>
 
@@ -73,29 +72,36 @@ export default function HomeScreen() {
       </Pressable>
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.chips}>
-        {DEAL_CHIPS.map((chip) => (
+        <GlassChip
+          label="All Deals"
+          icon="pricetag"
+          selected={(category ?? 'all') === 'all'}
+          onPress={() => patch({ category: 'all' })}
+        />
+        {CATEGORIES.filter((item) => item.id !== 'more').map((chip) => (
           <GlassChip
             key={chip.id}
             label={chip.label}
-            selected={(category ?? 'all') === chip.id}
+            icon={chip.icon}
+            selected={category === chip.id}
             onPress={() => {
-              patch({ category: chip.id === 'all' ? 'all' : chip.id });
-              if (chip.id !== 'all') router.push('/discover');
+              patch({ category: chip.id });
+              router.push('/discover');
             }}
           />
         ))}
       </ScrollView>
 
       <Pressable onPress={() => router.push('/sell')} style={styles.bannerWrap}>
-        <View style={[styles.banner, { backgroundColor: Palette.blue }]}>
+        <View style={styles.banner}>
           <View style={{ flex: 1, gap: 4 }}>
-            <AppText variant="caption" style={{ color: '#C9D8FF', fontWeight: '700' }}>
+            <AppText variant="caption" style={{ color: Palette.mint, fontWeight: '700' }}>
               INSTANT CASHOUT
             </AppText>
             <AppText variant="headline" style={{ color: '#fff' }}>
               Got unused items in closet?
             </AppText>
-            <AppText variant="caption" style={{ color: '#E4ECFF' }}>
+            <AppText variant="caption" style={{ color: 'rgba(255,255,255,0.8)' }}>
               List in 30s. Verified local buyers ready in Phnom Penh.
             </AppText>
           </View>
@@ -103,6 +109,7 @@ export default function HomeScreen() {
             <AppText variant="caption" style={{ color: Palette.blue, fontWeight: '700' }}>
               Sell Now
             </AppText>
+            <AppText variant="caption" style={{ color: Palette.blue }}>→</AppText>
           </View>
         </View>
       </Pressable>
@@ -184,7 +191,7 @@ function ProductRail({ products, loading }: { products: Product[]; loading: bool
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 12 }}>
       {products.map((product) => (
-        <View key={product.id} style={{ width: 168 }}>
+        <View key={product.id} style={{ width: 232 }}>
           <ProductCard product={product} />
         </View>
       ))}
@@ -199,18 +206,31 @@ const styles = StyleSheet.create({
   chips: { gap: 8 },
   bannerWrap: { borderRadius: Radius.xl, overflow: 'hidden' },
   banner: {
-    borderRadius: Radius.xl,
+    borderRadius: 12,
     padding: 16,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
+    backgroundColor: Palette.blue,
   },
   sellNow: {
     backgroundColor: '#fff',
-    paddingHorizontal: 12,
+    paddingHorizontal: 16,
     paddingVertical: 10,
     borderRadius: Radius.pill,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
   },
+  deals: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: Radius.pill,
+  },
+  dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: Palette.success },
   sectionHead: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   grid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
   gridItem: { width: '48%' },
