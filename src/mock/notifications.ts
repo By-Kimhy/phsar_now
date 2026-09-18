@@ -1,0 +1,66 @@
+import type { AppNotification } from '@/types';
+
+const hoursAgo = (hours: number) => new Date(Date.now() - hours * 3600_000).toISOString();
+
+export const notifications: AppNotification[] = [
+  {
+    id: 'n1',
+    type: 'counterOffer',
+    title: 'Dara countered your offer',
+    body: 'iPhone 15 Pro — $720',
+    createdAt: hoursAgo(0.5),
+    read: false,
+    productId: 'p_iphone15',
+    offerId: 'o_iphone',
+    conversationId: 'c_iphone',
+  },
+  {
+    id: 'n2',
+    type: 'message',
+    title: 'New message from Mina',
+    body: 'Can I see more photos?',
+    createdAt: hoursAgo(1.2),
+    read: false,
+    productId: 'p_ipad',
+    conversationId: 'c_ipad',
+  },
+  {
+    id: 'n3',
+    type: 'newOffer',
+    title: 'New offer on iPad Air',
+    body: 'Mina offered $400',
+    createdAt: hoursAgo(2),
+    read: false,
+    productId: 'p_ipad',
+    offerId: 'o_ipad',
+  },
+  {
+    id: 'n4',
+    type: 'transactionUpdate',
+    title: 'Payment pending',
+    body: 'Meet Dara for the Seiko 5 Sports.',
+    createdAt: hoursAgo(8),
+    read: true,
+    productId: 'p_watch',
+    orderId: 'ord_watch',
+  },
+  {
+    id: 'n5',
+    type: 'productSold',
+    title: 'Nintendo Switch sold',
+    body: 'Transaction completed with Dara.',
+    createdAt: hoursAgo(70),
+    read: true,
+    productId: 'p_switch',
+    orderId: 'ord_switch',
+  },
+  {
+    id: 'n6',
+    type: 'savedSearch',
+    title: 'New listing for “MacBook”',
+    body: 'MacBook Air M2 was listed near you.',
+    createdAt: hoursAgo(20),
+    read: true,
+    productId: 'p_macbook',
+  },
+];

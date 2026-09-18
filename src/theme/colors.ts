@@ -1,0 +1,63 @@
+export const Palette = {
+  blue: '#2F6BFF',
+  blueDeep: '#1E4FD7',
+  navy: '#12306B',
+  indigo: '#2F6BFF',
+  indigoDeep: '#12306B',
+  coral: '#FF6B6B',
+  coralHot: '#F25C54',
+  sky: '#4C6FFF',
+  gold: '#E8B931',
+  success: '#16A34A',
+  warning: '#D48A00',
+  danger: '#E11D48',
+} as const;
+
+export const Colors = {
+  light: {
+    text: '#12203A',
+    textSecondary: '#5B6B86',
+    textTertiary: '#8A97AD',
+    background: '#F3F6FF',
+    backgroundElevated: '#FFFFFF',
+    backgroundElement: '#E8EEFB',
+    backgroundSelected: '#DCE6FF',
+    tint: Palette.blue,
+    accent: Palette.blue,
+    border: 'rgba(18, 48, 107, 0.08)',
+    overlay: 'rgba(15, 32, 68, 0.4)',
+    success: Palette.success,
+    warning: Palette.warning,
+    danger: Palette.danger,
+    tabInactive: '#8A97AD',
+    tabActive: Palette.blue,
+    glassBorder: 'rgba(255, 255, 255, 0.7)',
+    glassFill: 'rgba(255, 255, 255, 0.92)',
+    skeleton: '#E4EAF8',
+  },
+  dark: {
+    text: '#F4F7FF',
+    textSecondary: '#B4BFD4',
+    textTertiary: '#8490A8',
+    background: '#0B1220',
+    backgroundElevated: '#151C2E',
+    backgroundElement: '#1D2740',
+    backgroundSelected: '#243056',
+    tint: '#7EA2FF',
+    accent: '#7EA2FF',
+    border: 'rgba(255, 255, 255, 0.08)',
+    overlay: 'rgba(2, 6, 18, 0.62)',
+    success: '#3DCF8E',
+    warning: '#F0C14A',
+    danger: '#FF7A7A',
+    tabInactive: '#8490A8',
+    tabActive: '#F4F7FF',
+    glassBorder: 'rgba(255, 255, 255, 0.14)',
+    glassFill: 'rgba(18, 24, 42, 0.88)',
+    skeleton: '#222A40',
+  },
+} as const;
+
+export type ThemeName = keyof typeof Colors;
+export type ThemeColors = (typeof Colors)[ThemeName];
+export type ThemeColor = keyof ThemeColors;

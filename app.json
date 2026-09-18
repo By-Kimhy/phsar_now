@@ -1,23 +1,30 @@
 {
   "expo": {
-    "name": "ecommerce",
-    "slug": "ecommerce",
+    "name": "PhsarNow",
+    "slug": "phsarnow",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "ecommerce",
+    "scheme": "phsarnow",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSCameraUsageDescription": "PhsarNow uses the camera so you can photograph items you want to sell.",
+        "NSPhotoLibraryUsageDescription": "PhsarNow accesses your photos so you can add listing and chat images.",
+        "NSMicrophoneUsageDescription": "PhsarNow uses the microphone when recording video for a listing."
+      }
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#17183F",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": ["CAMERA", "READ_MEDIA_IMAGES"]
     },
     "web": {
       "output": "static",
@@ -28,9 +35,24 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "backgroundColor": "#17183F",
+          "image": "./assets/images/phsarnow.jpg",
+          "imageWidth": 88
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow PhsarNow to access photos for listings and messages.",
+          "cameraPermission": "Allow PhsarNow to take photos for listings."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow PhsarNow to take photos for listings.",
+          "microphonePermission": "Allow PhsarNow to record video for listings.",
+          "recordAudioAndroid": false
         }
       ]
     ],

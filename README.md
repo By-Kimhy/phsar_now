@@ -1,56 +1,44 @@
-# Welcome to your Expo app 👋
+# PhsarNow
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A C2C marketplace for buying and selling with a single account. Built with React Native, Expo SDK 57, TypeScript, and Expo Router.
 
-## Get started
+One account. Two roles. One marketplace.
 
-1. Install dependencies
+## Stack
 
-   ```bash
-   npm install
-   ```
+- Expo SDK 57, Expo Router, TypeScript
+- TanStack Query for server state
+- Zustand for client state
+- `expo-glass-effect` on iOS, translucent fallbacks on Android
+- Mock services that can be swapped for a real API
 
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Run
 
 ```bash
-npm run reset-project
+npm install
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Then open iOS Simulator, Android emulator, or Expo Go.
 
-### Other setup steps
+Demo login is on the welcome screen. OTP code is `123456`.
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+## App loop
 
-## Learn more
+**Buy:** Discover → Search → Product → Seller → Message / Offer → Buy → Transaction
 
-To learn more about developing your project with Expo, look at the following resources:
+**Sell:** Sell → Photos → Details → Price → Preview → Publish → Messages / Offers
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Published listings are stored locally in the mock database, so they appear in Home and Discover after you publish.
 
-## Join the community
+## Environment
 
-Join our community of developers creating universal apps.
+Public config lives in `.env`, `.env.development`, and `.env.production`:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```
+EXPO_PUBLIC_API_URL=
+EXPO_PUBLIC_IMAGE_URL=
+EXPO_PUBLIC_APP_ENV=development
+```
+
+Leave `EXPO_PUBLIC_API_URL` empty to keep using the mock API. Do not put private secrets in `EXPO_PUBLIC_*` variables.
